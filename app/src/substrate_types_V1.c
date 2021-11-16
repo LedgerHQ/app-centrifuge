@@ -785,7 +785,6 @@ parser_error_t _toStringAccountVoteSplit_V1(
         CHECK_ERROR(_toStringBalanceOf(&v->nay, outValue, outValueLen, pageIdx, &pages[2]));
         return parser_ok;
     }
-    pageIdx -= pages[2];
 
     /////////
     /////////
@@ -839,7 +838,6 @@ parser_error_t _toStringAccountVoteStandard_V1(
         CHECK_ERROR(_toStringBalanceOf(&v->balance, outValue, outValueLen, pageIdx, &pages[2]));
         return parser_ok;
     }
-    pageIdx -= pages[2];
 
     /////////
     /////////
@@ -1050,7 +1048,6 @@ parser_error_t _toStringDefunctVoter_V1(
         CHECK_ERROR(_toStringCompactu32(&v->candidate_count, outValue, outValueLen, pageIdx, &pages[2]))
         return parser_ok;
     }
-    pageIdx -= pages[2];
 
     return parser_display_idx_out_of_range;
 }
@@ -1294,7 +1291,6 @@ parser_error_t _toStringIdentityInfo_V1(
         CHECK_ERROR(_toStringData(&v->twitter, outValue, outValueLen, pageIdx, &pages[8]))
         return parser_ok;
     }
-    pageIdx -= pages[8];
 
     return parser_display_idx_out_of_range;
 }
