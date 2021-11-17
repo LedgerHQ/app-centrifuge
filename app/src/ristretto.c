@@ -60,22 +60,22 @@ const fe25519_sdk ed25519_invsqrtamd_sdk = {
 
 void fe25519_add_sdk(fe25519_sdk h, const fe25519_sdk f, const fe25519_sdk g)
 {
-    cx_math_addm(h, f, g, ED25519_FIELD_SIZE, ED25519_SCALAR_BYTES);
+    cx_math_addm_no_throw(h, f, g, ED25519_FIELD_SIZE, ED25519_SCALAR_BYTES);
 }
 
 void fe25519_sub_sdk(fe25519_sdk h, const fe25519_sdk f, const fe25519_sdk g)
 {
-    cx_math_subm(h, f, g, ED25519_FIELD_SIZE, ED25519_SCALAR_BYTES);
+    cx_math_subm_no_throw(h, f, g, ED25519_FIELD_SIZE, ED25519_SCALAR_BYTES);
 }
 
 void fe25519_mul_sdk(fe25519_sdk h, const fe25519_sdk f, const fe25519_sdk g)
 {
-    cx_math_multm(h, f, g, ED25519_FIELD_SIZE, ED25519_SCALAR_BYTES);
+    cx_math_multm_no_throw(h, f, g, ED25519_FIELD_SIZE, ED25519_SCALAR_BYTES);
 }
 
 void fe25519_sq_sdk(fe25519_sdk h, const fe25519_sdk f)
 {
-    cx_math_multm(h, f, f, ED25519_FIELD_SIZE, ED25519_SCALAR_BYTES);
+    cx_math_multm_no_throw(h, f, f, ED25519_FIELD_SIZE, ED25519_SCALAR_BYTES);
 }
 
 void fe25519_1_sdk(fe25519_sdk h)
@@ -96,7 +96,7 @@ int fe25519_isnegative_sdk(const fe25519_sdk f)
 
 void fe25519_neg_sdk(fe25519_sdk h, const fe25519_sdk f)
 {
-    cx_math_subm(h, ED25519_FIELD_ZERO, f, ED25519_FIELD_SIZE, ED25519_SCALAR_BYTES);
+    cx_math_subm_no_throw(h, ED25519_FIELD_ZERO, f, ED25519_FIELD_SIZE, ED25519_SCALAR_BYTES);
 }
 
 void fe25519_copy_sdk(const fe25519_sdk h, const fe25519_sdk f)
@@ -141,7 +141,7 @@ void fe25519_tobytes_sdk(unsigned char *s, const fe25519_sdk f)
 
 void fe25519_pow22523_sdk(fe25519_sdk out, const fe25519_sdk z)
 {
-    cx_math_powm(out, z, ED25519_POW225, ED25519_SCALAR_BYTES, ED25519_FIELD_SIZE, ED25519_SCALAR_BYTES);
+    cx_math_powm_no_throw(out, z, ED25519_POW225, ED25519_SCALAR_BYTES, ED25519_FIELD_SIZE, ED25519_SCALAR_BYTES);
 }
 
 int ristretto255_sqrt_ratio_m1_sdk(fe25519_sdk x, const fe25519_sdk u, const fe25519_sdk v)
@@ -250,7 +250,7 @@ int crypto_scalarmult_ristretto255_base_sdk(unsigned char *q,const unsigned char
 
     uint8_t Pxy[ED25519_SDKPOINT_BYTES];
     memcpy(Pxy, ED25519_GEN, sizeof(Pxy));
-    cx_ecfp_scalar_mult(CX_CURVE_Ed25519, Pxy, sizeof(Pxy), t, ED25519_SCALAR_BYTES);
+    cx_ecfp_scalar_mult_no_throw(CX_CURVE_Ed25519, Pxy, t, ED25519_SCALAR_BYTES);
 
     ge25519_p3_sdk Q_sdk;
     MEMZERO(&Q_sdk, sizeof(ge25519_p3_sdk));
