@@ -145,8 +145,6 @@ void app_init() {
 
 }
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wmissing-noreturn"
 
 void app_main() {
     volatile uint32_t rx = 0, tx = 0, flags = 0;
@@ -186,10 +184,10 @@ void app_main() {
                     case 0x6000:
                     case 0x9000:
                         sw = e;
-                        break;
+                        return;
                     default:
                         sw = 0x6800 | (e & 0x7FF);
-                        break;
+                        return;
                 }
                 G_io_apdu_buffer[tx] = sw >> 8;
                 G_io_apdu_buffer[tx + 1] = sw;
@@ -202,4 +200,3 @@ void app_main() {
     }
 }
 
-#pragma clang diagnostic pop
