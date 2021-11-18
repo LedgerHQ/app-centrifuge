@@ -117,7 +117,7 @@ jobs:
 
       - name: Build
         run: |
-          make DEBUG=1
+          SUPPORT_SR25519=1 make DEBUG=1
       - name: Upload app binary
         uses: actions/upload-artifact@v2
         with:
@@ -138,7 +138,7 @@ jobs:
       - name: Build with Clang Static Analyzer
         run: |
           make clean
-          scan-build --use-cc=clang -analyze-headers -enable-checker security -enable-checker unix -enable-checker valist -o scan-build --status-bugs make default
+          SUPPORT_SR25519=1 scan-build --use-cc=clang -analyze-headers -enable-checker security -enable-checker unix -enable-checker valist -o scan-build --status-bugs make default
       - uses: actions/upload-artifact@v2
         if: failure()
         with:
