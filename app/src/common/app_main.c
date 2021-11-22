@@ -184,10 +184,10 @@ void app_main() {
                     case 0x6000:
                     case 0x9000:
                         sw = e;
-                        return;
+                        break;
                     default:
                         sw = 0x6800 | (e & 0x7FF);
-                        return;
+                        break;
                 }
                 G_io_apdu_buffer[tx] = sw >> 8;
                 G_io_apdu_buffer[tx + 1] = sw;
